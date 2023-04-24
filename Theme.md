@@ -8,7 +8,9 @@ This file is located at `"../utils/theme.js"`
 
 | Palette        | Color            | Hexadecimal Code                                                                                     | Copy Code            |
 | -------------- | ---------------- | ---------------------------------------------------------------------------------------------------- | -------------------- |
-| graphColor     | `graph-1`        | <span style="color: #2E56F4; background-color: white; padding: 2px">#2E56F4</span>                   | ```variant['graph-1']``` |
+| graphColor     | `graph-1`        | <span style="color: #2E56F4; background-color: white; padding: 2px">#2E56F4</span>                   | ``` 
+variant['graph-1'] 
+``` |
 |                | `graph-2`        | <span style="color: #00D7F7; background-color: white; padding: 2px">#00D7F7</span>                   | `variant['graph-2']` |
 |                | `graph-3`        | <span style="color: #6B747F; background-color: white; padding: 2px">#6B747F</span>                   | `variant['graph-3']` |
 |                | `graph-4`        | <span style="color: #FB9A00; background-color: white; padding: 2px">#FB9A00</span>                   | `variant['graph-4']` |
