@@ -4,7 +4,7 @@ The `theme.js` file defines a JavaScript object called theme which contains colo
 
 This file is located at `"../utils/theme.js"`
 
-<h3>There are 7 types of Color Palette described here, they are listed below:<h3>
+<h3>There are 7 types of Color Palette described here, they are listed below:</h3>
 
 | Palette        | Color            | Hexadecimal Code                                                                                     | Copy Code            |
 | -------------- | ---------------- | ---------------------------------------------------------------------------------------------------- | -------------------- |
