@@ -13,8 +13,7 @@ const Banner = (props) => {
           className={styles.button}
           onClick={props.handleOnClick}
         >
-          {/* {props.buttonText} */}
-          View
+          {props.buttonText}
         </button>
       </div>
     </div>
