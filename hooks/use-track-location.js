@@ -1,15 +1,23 @@
-import { useState, useEffect } from "react";
+import { ACTION_TYPES, StoreContext } from "@/pages/_app";
+import { useState, useEffect,useContext } from "react";
 
 const useTrackLocation = () => {
     const [locationErrorMsg, setLocationErrorMessage] = useState('');
-    const [latLong, setLatLong] = useState("");
+    // const [latLong, setLatLong] = useState("");
     const [isFindingLocation, setIsFindingLocation] = useState(false);
+
+    const {dispatch} = useContext(StoreContext)
 
     const success = (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         
-        setLatLong(`${latitude},${longitude}`);
+        // setLatLong(`${latitude},${longitude}`);
+
+        dispatch({
+            type: ACTION_TYPES.SET_LAT_LONG,
+            payload: { latLong: `${latitude},${longitude}`}        
+        })
         setLocationErrorMessage('');
         setTimeout(() => {
             setIsFindingLocation(false)
@@ -35,7 +43,6 @@ const useTrackLocation = () => {
     useEffect(() => {
         const cleanup = () => {
           setIsFindingLocation(false);
-          setLatLong('');
           setLocationErrorMessage('');
         };
     
@@ -43,11 +50,10 @@ const useTrackLocation = () => {
       }, []);
     
     return {
-        latLong,
+        // latLong,
         handleTrackLocation,
         locationErrorMsg,
         isFindingLocation,
-        destroy: cleanup, // Adding the destroy function
     };
 };
 
