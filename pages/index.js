@@ -8,7 +8,7 @@ import Card from '../components/card';
 
 import { fetchCoffeeStores} from '@/lib/coffee-stores';
 import useTrackLocation from '@/hooks/use-track-location';
-import { ACTION_TYPES, StoreContext } from "@/pages/_app";
+import { ACTION_TYPES, StoreContext } from "@/store/store-context";
 
 export async function getStaticProps(context) {
   // API call
@@ -32,6 +32,7 @@ export default function Home(props) {
   const { dispatch , state } = useContext(StoreContext)
 
   const { coffeeStores, latLong } = state
+
   useEffect(() => {
     // making useEffect async brings an error. thats wy const fetchData block is used to use async
     const fetchData = async () => {

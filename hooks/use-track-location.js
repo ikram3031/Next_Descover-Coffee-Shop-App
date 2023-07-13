@@ -1,4 +1,4 @@
-import { ACTION_TYPES, StoreContext } from "@/pages/_app";
+import { ACTION_TYPES, StoreContext } from "@/store/store-context";
 import { useState, useEffect,useContext } from "react";
 
 const useTrackLocation = () => {
@@ -40,14 +40,14 @@ const useTrackLocation = () => {
         }
     };
 
-    useEffect(() => {
-        const cleanup = () => {
-          setIsFindingLocation(false);
-          setLocationErrorMessage('');
-        };
+    // useEffect(() => {
+    //     const cleanup = () => {
+    //       setIsFindingLocation(false);
+    //       setLocationErrorMessage('');
+    //     };
     
-        return cleanup;
-      }, []);
+    //     return cleanup;
+    //   }, []);
     
     return {
         // latLong,
