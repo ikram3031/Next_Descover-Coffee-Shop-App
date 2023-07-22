@@ -39,7 +39,6 @@ export default function Home(props) {
       if (latLong) {
         try {
           const response = await fetch(`/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`);
-          // console.log({ fetchedCoffeeStores });
           const coffeeStores = await response.json()
           dispatch({
             type: ACTION_TYPES.SET_COFFEE_STORES,
@@ -57,9 +56,6 @@ export default function Home(props) {
   
     fetchData();
   }, [latLong]);
-  
-
-  // console.log({latLong, locationErrorMsg, coffeeStores})
 
   const handleOnBannerBtnClick = () => {
     handleTrackLocation();

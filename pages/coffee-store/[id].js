@@ -43,7 +43,6 @@ export async function getStaticPaths(){
 }
 
 const CoffeeStore = (initialProps) => {
-  console.log('initialProps',initialProps)
   const router = useRouter()
 
   if(router.isFallback){
@@ -60,22 +59,17 @@ const CoffeeStore = (initialProps) => {
     }
   } = useContext(StoreContext)
 
-  console.log('coffeeStores', coffeeStores)
-
 useEffect(() => {
   // debugger;
 
   if(isEmpty(initialProps.coffeeStore)){
     if(coffeeStore.length > 0){
       const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
-        // debugger;
-        console.log(CoffeeStore.id)
         return CoffeeStore.id.toString() === id
       })
       setCoffeeStore(findCoffeeStoreById)
     }
   }
-  console.log('usState coffee store',coffeeStore, id)
 }, [id]);  
 
   const { address , name, neighbourhood, imgUrl } = coffeeStore;
