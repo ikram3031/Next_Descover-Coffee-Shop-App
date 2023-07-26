@@ -43,6 +43,7 @@ export async function getStaticPaths(){
 }
 
 const CoffeeStore = (initialProps) => {
+  console.log('initialProps', initialProps)
   const router = useRouter()
 
   if(router.isFallback){
@@ -59,18 +60,27 @@ const CoffeeStore = (initialProps) => {
     }
   } = useContext(StoreContext)
 
-useEffect(() => {
-  // debugger;
-
-  if(isEmpty(initialProps.coffeeStore)){
-    if(coffeeStore.length > 0){
-      const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
-        return CoffeeStore.id.toString() === id
-      })
-      setCoffeeStore(findCoffeeStoreById)
+  const handleCreateCoffeeStore = async () => {
+    try{
+      const response = await fetch('api/createCoffeeStore');
+    } catch(error){
+      console.error('Error creating coffeestore')
     }
   }
-}, [id]);  
+
+  useEffect(() => {
+
+    if(isEmpty(initialProps.coffeeStore)){
+      if(coffeeStore.length > 0){
+        const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
+          return CoffeeStore.id.toString() === id
+        })
+        setCoffeeStore(findCoffeeStoreById)
+      }
+    }
+  }, [id]);  
+
+  console.log('coffeeStore',coffeeStore)
 
   const { address , name, neighbourhood, imgUrl } = coffeeStore;
 
