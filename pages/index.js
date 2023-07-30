@@ -33,6 +33,8 @@ export default function Home(props) {
 
   const { coffeeStores, latLong } = state
 
+  console.log('state',state)
+
   useEffect(() => {
     // making useEffect async brings an error. thats wy const fetchData block is used to use async
     const fetchData = async () => {

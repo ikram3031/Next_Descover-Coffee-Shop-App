@@ -9,17 +9,18 @@ import Neighbourhood from "../../public/static/icons/nearMe.svg"
 import Star from "../../public/static/icons/star.svg"
 import { fetchCoffeeStores } from "@/lib/coffee-stores";
 import { useContext, useState, useEffect } from "react";
-import { StoreContext } from "@/store/store-context";
 import { isEmpty } from "@/utils";
+import { ACTION_TYPES, StoreContext } from "@/store/store-context";
 
 export async function getStaticProps(staticProps){
   const params = staticProps.params;
-  
+
   const coffeeStores = await fetchCoffeeStores();
-  
+  console.log('static coffeeStores', coffeeStores)
   const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
     return CoffeeStore.id.toString() === params.id
   })
+  console.log('findCoffeeStoreById',findCoffeeStoreById)
   return {
     props:{
       coffeeStore: findCoffeeStoreById ? findCoffeeStoreById : {}
@@ -29,6 +30,7 @@ export async function getStaticProps(staticProps){
 
 export async function getStaticPaths(){
   const coffeeStores = await fetchCoffeeStores();
+  console.log('static path coffeeStores', coffeeStores)
   const paths = coffeeStores.map(coffeeStore => {
     return {
       params: {
@@ -43,7 +45,6 @@ export async function getStaticPaths(){
 }
 
 const CoffeeStore = (initialProps) => {
-  console.log('initialProps', initialProps)
   const router = useRouter()
 
   if(router.isFallback){
@@ -62,14 +63,28 @@ const CoffeeStore = (initialProps) => {
 
   const handleCreateCoffeeStore = async () => {
     try{
-      const response = await fetch('api/createCoffeeStore');
+      const data ={
+        id, 
+        name, 
+        neighbourhood, 
+        address, 
+        imgUrl, 
+        voting
+      }
+      const response = await fetch('api/createCoffeeStore', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      });
     } catch(error){
       console.error('Error creating coffeestore')
     }
   }
 
   useEffect(() => {
-
+console.log(initialProps)
     if(isEmpty(initialProps.coffeeStore)){
       if(coffeeStore.length > 0){
         const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
